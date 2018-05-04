@@ -3,7 +3,7 @@
 Random curated Fonts and pastel Colors for your UI/UX design,
 design for non-designers, poors man design. Nim package.
 
-![screenshot](https://source.unsplash.com/xi9d8YSLNo4/800x402 "Illustrative Photo by https://unsplash.com/@foxfox")
+![screenshot](https://source.unsplash.com/xi9d8YSLNo4/800x402 "Illustrative Photo by https://unsplash.com/@rawpixel")
 
 
 # Use
@@ -62,3 +62,8 @@ dark for dark colors and light for light colors, `string` type, optional.
 - **All other `proc` cant take any arguments at all, just use them directly.**
 
 </details>
+
+
+# Why?
+
+- [Whats this useful for???, heres an example of a presentation auto-styled with this.](http://htmlpreview.github.io/?https://github.com/juancarlospaco/microraptor/blob/master/test-presentation.html)
