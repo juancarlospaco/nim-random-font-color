@@ -64,6 +64,23 @@ dark for dark colors and light for light colors, `string` type, optional.
 </details>
 
 
+<details>
+    <summary><b>get_random_css_pattern()</b></summary>
+
+**Description:**
+Get a random seamless CSS3 pattern with pastel colors as string. For quick HTML styling.
+This patterns have been tested on HTML/CSS with one each other,
+they look pretty good on all combinations, we are not Designers,
+but this is useful for quick templating and boilerplates styling.
+From lea.verou.me/css3patterns and bennettfeely.com/gradients and my own.
+
+**Arguments:** None.
+
+**Returns:** 1 random seamless CSS3 pattern with pastel colors, `string` type.
+
+</details>
+
+
 # Why?
 
 - [Whats this useful for???, heres an example of a presentation auto-styled with this.](http://htmlpreview.github.io/?https://github.com/juancarlospaco/microraptor/blob/master/test-presentation.html)
