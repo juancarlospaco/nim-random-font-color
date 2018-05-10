@@ -28,6 +28,16 @@ design for non-designers, poors man design. Nim package.
 (name: "lavenderblush", hexa: "#fff0f5", rgb: [255, 240, 245], rgb_percent: [100, 94, 96])
 >>> echo get_random_pastel_color()
 (name: "chocolate", hexa: "#d2691e", rgb: [210, 105, 30], rgb_percent: [82, 41, 11])
+echo get_random_css_pattern()
+background:
+  linear-gradient(transparent,transparent 10px,#fff 10px, gray 14px,#fff 15px,rgba(0, 0, 0, 0) 14px,rgba(0, 0, 0, 0)),
+  linear-gradient(135deg,transparent,transparent 12px,#fff 12px,#000 15px, transparent 15px,transparent),
+  radial-gradient(10px 10px,circle,#FFF 7px,transparent 9px);
+background-size: 35px 30px,4px 30px,20px 30px;
+background-position: 0px 8px,31px 35px,25px 10px;
+background-color: #87cefa;
+background-repeat: repeat-y;
+
 >>>
 ```
 
