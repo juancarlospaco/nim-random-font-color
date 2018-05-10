@@ -22,7 +22,7 @@ include css_patterns
 ## standard safe colors, you can not expand those lists of colors and fonts.
 
 
-type Color = tuple[name: string, hexa: string, rgb: array, rgb_percent: array]
+type Color = tuple[name: string, hexa: string, rgb: array[0..2, int16], rgb_percent: array[0..2, int8]]
 randomize()
 
 
@@ -125,9 +125,9 @@ proc get_random_pastel_color*(tone: string=""): tuple =
        "saddlebrown", "seagreen", "sienna", "slategray", "teal"]
 
    var colors_array: seq[string]
-   if $tone == "light":
+   if tone == "light":
        colors_array = light_colors_tuple
-   elif $tone == "dark":
+   elif tone == "dark":
        colors_array = dark_colors_tuple
    else:
        colors_array = light_colors_tuple & dark_colors_tuple
@@ -138,9 +138,9 @@ proc get_random_pastel_color*(tone: string=""): tuple =
 
    let c: Color = (
      name: colo,
-     hexa: toLower($hexa),
-     rgb: [int(rgbv.r), int(rgbv.g), int(rgbv.b)],
-     rgb_percent: [int(rgbv.r * 100 / 255), int(rgbv.g * 100 / 255), int(rgbv.b * 100 / 255)])
+     hexa: toLowerAscii($hexa),
+     rgb: [int16(rgbv.r), int16(rgbv.g), int16(rgbv.b)],
+     rgb_percent: [int8(rgbv.r * 100 / 255), int8(rgbv.g * 100 / 255), int8(rgbv.b * 100 / 255)])
    result = c
 
 
