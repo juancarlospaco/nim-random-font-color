@@ -1,6 +1,10 @@
+#!/usr/bin/nim c -r
+
 import random
 import colors
-import unicode
+import strutils
+
+include css_patterns
 
 
 ## Get a random font name as string, useful for HTML/CSS styling.
@@ -140,6 +144,18 @@ proc get_random_pastel_color*(tone: string=""): tuple =
    result = c
 
 
+proc get_random_css_pattern*(): string =
+  ## Get a random CSS3 seamless pattern with random pastel colors as string.
+  ## For quick but cool HTML styling on modern browsers.
+  [css1, css2, css3, css4, css5, css6, css7, css8, css9, css10,
+   css11, css12, css13, css14, css15, css16, css17, css18, css19, css20,
+   css21, css22, css23, css24, css25, css26, css27, css28, css29, css30,
+   css31, css32, css33, css34, css35, css36, css37, css38, css39, css40,
+   css41, css42, css43, css44, css45, css46, css47, css48, css49, css50,
+   css51, css52, css53, css54, css55].rand().format(
+   get_random_pastel_color("light").hexa, get_random_pastel_color("dark").hexa)
+
+
 if is_main_module:
   echo get_random_handwriting_font()
   echo get_random_mono_font()
@@ -150,3 +166,4 @@ if is_main_module:
   echo get_random_pastel_color("dark")
   echo get_random_pastel_color("light")
   echo get_random_pastel_color()
+  echo get_random_css_pattern()
