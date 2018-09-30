@@ -1,12 +1,3 @@
-#!/usr/bin/nim c -r
-
-import random
-import colors
-import strutils
-
-include css_patterns
-
-
 ## Get a random font name as string, useful for HTML/CSS styling.
 ##
 ## This groups have been tested on HTML/CSS with one each other,
@@ -21,6 +12,9 @@ include css_patterns
 ## Yes they are Hardcoded because they are all available on Google Fonts and
 ## standard safe colors, you can not expand those lists of colors and fonts.
 
+import random, colors, strutils
+
+include css_patterns
 
 type Color = tuple[name: string, hexa: string, rgb: array[0..2, int16], rgb_percent: array[0..2, int8]]
 randomize()
@@ -35,7 +29,7 @@ proc get_random_handwriting_font*(): string =
     "Arizonia", "Montez", "Sriracha", "Delius", "Qwigley", "Itim", "Julee",
     "Quintessential", "Fondamento", "Ruthie", "Condiment", "Amita",
     "Yesteryear", "Aladin", "Norican", "Engagement", "Stalemate", "Meddon",
-    "Vibur", "Bilbo", "Redressed", "Devonshire", "Kavivanar", "Kristi"].rand()
+    "Vibur", "Bilbo", "Redressed", "Devonshire", "Kavivanar", "Kristi"].rand
 
 
 proc get_random_mono_font*(): string =
@@ -63,7 +57,7 @@ proc get_random_display_font*(): string =
     "Peralta", "Miniver", "Trochut", "Lancelot", "Risque", "Gorditas",
     "Kenia", "Margarine", "Underdog", "Smythe", "Ranchers", "Astloch",
     "Fascinate", "Miltonian", "Warnes", "Combo", "Spirax", "Aubrey",
-    "Flavors", "Macondo", "Federant", "Geostar", "Sevillana", "Unlock"].rand()
+    "Flavors", "Macondo", "Federant", "Geostar", "Sevillana", "Unlock"].rand
 
 
 proc get_random_sans_font*(): string =
@@ -81,7 +75,7 @@ proc get_random_sans_font*(): string =
     "Anaheim", "Tauri", "Metrophobic", "Strait", "Belleza", "Inder", "Geo",
     "Capriola", "Assistant", "Prompt", "Lekton", "Imprima", "Orienta",
     "Gafata", "Shanti", "Federo", "Englebert", "Rationale", "Numans",
-    "Cagliostro", "Ruluko", "Snippet", "Fresca", "Galdeano", "Lato"].rand()
+    "Cagliostro", "Ruluko", "Snippet", "Fresca", "Galdeano", "Lato"].rand
 
 
 proc get_random_serif_font*(): string =
@@ -97,7 +91,7 @@ proc get_random_serif_font*(): string =
     "Belgrano", "Cambo", "Tienne", "Balthazar", "Italiana", "Podkova",
     "Amethysta", "Ledger", "Buenard", "Habibi", "Esteban", "Inika", "Sura",
     "Artifika", "Rosarivo", "Stoke", "Almendra", "Laila", "Kadwa",
-    "Petrona", "Trykker", "Montaga", "Sahitya", "Asar", "Peddana"].rand()
+    "Petrona", "Trykker", "Montaga", "Sahitya", "Asar", "Peddana"].rand
 
 
 proc get_random_font*(): string =
@@ -113,7 +107,7 @@ proc get_random_pastel_color*(tone: string=""): tuple =
        "aliceblue", "antiquewhite", "aqua", "aquamarine", "azure", "beige",
        "cornsilk", "floralwhite", "ghostwhite", "honeydew", "ivory",
        "lavender", "lavenderblush", "lemonchiffon", "lightcyan",
-       "lightgoldenrodyellow", "lightgrey", "lightpink", "lightskyblue",
+       "lightgoldenrodyellow", "lightpink", "lightskyblue",
        "lightyellow", "linen", "mintcream", "oldlace", "papayawhip",
        "peachpuff", "seashell", "skyblue", "snow", "thistle", "white"]
    let dark_colors_tuple = @[
@@ -156,7 +150,8 @@ proc get_random_css_pattern*(): string =
    get_random_pastel_color("light").hexa, get_random_pastel_color("dark").hexa)
 
 
-if is_main_module:
+runnableExamples:
+  import random, colors, strutils
   echo get_random_handwriting_font()
   echo get_random_mono_font()
   echo get_random_display_font()

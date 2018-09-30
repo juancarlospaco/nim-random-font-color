@@ -1,4 +1,5 @@
 
+
 ## Get a random CSS3 pattern as string. For quick HTML styling.
 ##
 ## This groups have been tested on HTML/CSS with one each other,
