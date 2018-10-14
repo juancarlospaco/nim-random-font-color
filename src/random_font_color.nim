@@ -18,7 +18,7 @@ import random, colors, strutils
 include constants
 
 type Color = tuple[name: string, hexa: string, rgb: array[0..2, int16], rgb_percent: array[0..2, int8]]
-randomize()
+when not defined(js): randomize()  # Basic NodeJS Support.
 
 
 proc get_random_handwriting_font*(): string {.inline.} =
@@ -76,6 +76,7 @@ proc get_random_css_pattern*(): string =
                              get_random_pastel_color("dark").hexa)
 
 
+# when isMainModule:    # For Testing with NodeJS uncomment this line.
 runnableExamples:
   import random, colors, strutils
   # Get a Random Font from each Family.
