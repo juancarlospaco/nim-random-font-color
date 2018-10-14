@@ -1,7 +1,7 @@
 # nim-random-font-color
 
 Random curated Fonts and pastel Colors for your UI/UX design,
-design for non-designers, poors man design. Nim package.
+design for non-designers, poors man design. Nim package. Works OK with NodeJS.
 
 ![screenshot](https://source.unsplash.com/xi9d8YSLNo4/800x402 "Illustrative Photo by https://unsplash.com/@rawpixel")
 
@@ -40,6 +40,15 @@ background-color: #87cefa;
 background-repeat: repeat-y;
 """
 >>>
+```
+
+
+```javascript
+node random_font_color.js
+
+(name: "forestgreen", hexa: "#228b22", rgb: [34, 139, 34], rgb_percent: [13, 54, 13])
+(name: "mintcream", hexa: "#f5fffa", rgb: [245, 255, 250], rgb_percent: [96, 100, 98])
+(name: "darkslategray", hexa: "#2f4f4f", rgb: [47, 79, 79], rgb_percent: [18, 30, 30])
 ```
 
 
