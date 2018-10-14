@@ -15,7 +15,6 @@
 ## .. image:: https://source.unsplash.com/xi9d8YSLNo4/800x402
 
 import random, colors, strutils
-
 include constants
 
 type Color = tuple[name: string, hexa: string, rgb: array[0..2, int16], rgb_percent: array[0..2, int8]]
@@ -26,33 +25,27 @@ proc get_random_handwriting_font*(): string {.inline.} =
   ## Get a random handwriting font name as string. For Titles/SubTitles.
   handwriting_fonts.rand
 
-
 proc get_random_mono_font*(): string {.inline.} =
   ## Get a random monospaced font name as string. Few fonts. For Code.
   mono_fonts.rand
-
 
 proc get_random_display_font*(): string {.inline.} =
   ## Get a random decorative display cosmetic font name as string.For Fun.
   display_fonts.rand
 
-
 proc get_random_sans_font*(): string {.inline.} =
   ## Get a random sans font name as string. These are for serious stuff.
   sans_fonts.rand
 
-
 proc get_random_serif_font*(): string {.inline.} =
   ## Get a random serif font name as string. These are for serious stuff.
   serif_fonts.rand
-
 
 proc get_random_font*(): string =
   ## Get a random font name as string. Any kind of font.
   [get_random_handwriting_font(), get_random_mono_font(),
    get_random_display_font(), get_random_sans_font(),
    get_random_serif_font()].rand
-
 
 proc get_random_pastel_color*(tone: string=""): tuple =
    ## Get a random dark or light color as string, useful for CSS styling.
@@ -76,17 +69,11 @@ proc get_random_pastel_color*(tone: string=""): tuple =
      rgb_percent: [int8(rgbv.r * 100 / 255), int8(rgbv.g * 100 / 255), int8(rgbv.b * 100 / 255)])
    result = c
 
-
 proc get_random_css_pattern*(): string =
   ## Get a random CSS3 seamless pattern with random pastel colors as string.
   ## For quick but cool HTML styling on modern browsers.
-  [css1, css2, css3, css4, css5, css6, css7, css8, css9, css10,
-   css11, css12, css13, css14, css15, css16, css17, css18, css19, css20,
-   css21, css22, css23, css24, css25, css26, css27, css28, css29, css30,
-   css31, css32, css33, css34, css35, css36, css37, css38, css39, css40,
-   css41, css42, css43, css44, css45, css46, css47, css48, css49, css50,
-   css51, css52, css53, css54, css55].rand().format(
-   get_random_pastel_color("light").hexa, get_random_pastel_color("dark").hexa)
+  css_patterns.rand().format(get_random_pastel_color("light").hexa,
+                             get_random_pastel_color("dark").hexa)
 
 
 runnableExamples:
