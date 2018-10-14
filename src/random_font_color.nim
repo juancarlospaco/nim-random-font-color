@@ -14,117 +14,54 @@
 
 import random, colors, strutils
 
-include css_patterns
+include constants
 
 type Color = tuple[name: string, hexa: string, rgb: array[0..2, int16], rgb_percent: array[0..2, int8]]
 randomize()
 
 
-proc get_random_handwriting_font*(): string =
+proc get_random_handwriting_font*(): string {.inline.} =
   ## Get a random handwriting font name as string. For Titles/SubTitles.
-  @["Molle", "Pacifico", "Yellowtail", "Dekko", "Courgette", "Satisfy",
-    "Cookie", "Handlee", "Sacramento", "Tangerine", "Damion", "Kalam",
-    "Neucha", "Calligraffitti", "Rancho", "Allura", "Niconne", "Rochester",
-    "Parisienne", "Merienda", "Caveat", "Tillana", "Italianno", "Sofia",
-    "Arizonia", "Montez", "Sriracha", "Delius", "Qwigley", "Itim", "Julee",
-    "Quintessential", "Fondamento", "Ruthie", "Condiment", "Amita",
-    "Yesteryear", "Aladin", "Norican", "Engagement", "Stalemate", "Meddon",
-    "Vibur", "Bilbo", "Redressed", "Devonshire", "Kavivanar", "Kristi"].rand
+  handwriting_fonts.rand
 
 
-proc get_random_mono_font*(): string =
+proc get_random_mono_font*(): string {.inline.} =
   ## Get a random monospaced font name as string. Few fonts. For Code.
-  @["Inconsolata", "Cousine", "Roboto Mono", "Source Code Pro",
-    "Droid Sans Mono", "Space Mono", "PT Mono", "Ubuntu Mono", "Nova Mono",
-    "Share Tech Mono", "Anonymous Pro", "Oxygen Mono", "Cutive Mono",
-    "Fira Mono"].rand()
+  mono_fonts.rand
 
 
-proc get_random_display_font*(): string =
+proc get_random_display_font*(): string {.inline.} =
   ## Get a random decorative display cosmetic font name as string.For Fun.
-  @["Mirza", "Lobster", "Buda", "Comfortaa", "Righteous", "Chewy", "Allan",
-    "Audiowide", "Boogaloo", "Playball", "Bangers", "Bevan", "Shrikhand",
-    "Coda", "Share", "Overlock", "Arbutus", "Limelight", "Pompiere",
-    "Monoton", "Graduate", "Lalezar", "Farsan", "Bungee", "Rakkas", "Atma",
-    "Mogra", "Slackey", "Forum", "Kavoon", "Fruktur", "Gruppo", "Baumans",
-    "Unkempt", "Corben", "Crushed", "Kranky", "Skranji", "Oregano", "Sail",
-    "Knewave", "Sniglet", "Shojumaru", "Voces", "Revalia", "Megrim",
-    "Lemonada", "Lemon", "Coiny", "Baloo", "Frijole", "Salsa", "Simonetta",
-    "Wallpoet", "McLaren", "Amarante", "Iceland", "Chonburi", "Dynalight",
-    "Galada", "Metamorphous", "Ribeye", "Milonga", "Flamenco", "Elsie",
-    "Chicle", "Paprika", "Piedra", "Akronim", "Iceberg", "Oldenburg",
-    "Offside", "Galindo", "Wellfleet", "Sarina", "MedievalSharp", "Chango",
-    "Peralta", "Miniver", "Trochut", "Lancelot", "Risque", "Gorditas",
-    "Kenia", "Margarine", "Underdog", "Smythe", "Ranchers", "Astloch",
-    "Fascinate", "Miltonian", "Warnes", "Combo", "Spirax", "Aubrey",
-    "Flavors", "Macondo", "Federant", "Geostar", "Sevillana", "Unlock"].rand
+  display_fonts.rand
 
 
-proc get_random_sans_font*(): string =
+proc get_random_sans_font*(): string {.inline.} =
   ## Get a random sans font name as string. These are for serious stuff.
-  @["Roboto", "Oswald", "Montserrat", "Raleway", "Ubuntu", "Arimo", "Muli",
-    "Dosis", "Oxygen", "Nunito", "Hind", "Cabin", "Catamaran", "Abel",
-    "Asap", "Quicksand", "Karla", "Signika", "Questrial", "Exo", "Acme",
-    "Orbitron", "Rubik", "Monda", "BenchNine", "ABeeZee", "Gudea", "Teko",
-    "Armata", "Economica", "Ruda", "Aclonica", "Sintony", "Yantramanav",
-    "Voltaire", "Amaranth", "Cantarell", "Rambla", "Varela", "Aldrich",
-    "Antic", "Actor", "Nobile", "Electrolize", "Heebo", "Homenaje", "Jura",
-    "Molengo", "Viga", "Syncopate", "Basic", "Candal", "Michroma", "Carme",
-    "Marmelad", "Telex", "Chivo", "Spinnaker", "Convergence", "Allerta",
-    "Marvel", "Quantico", "Puritan", "Magra", "Rosario", "Mako", "Asul",
-    "Anaheim", "Tauri", "Metrophobic", "Strait", "Belleza", "Inder", "Geo",
-    "Capriola", "Assistant", "Prompt", "Lekton", "Imprima", "Orienta",
-    "Gafata", "Shanti", "Federo", "Englebert", "Rationale", "Numans",
-    "Cagliostro", "Ruluko", "Snippet", "Fresca", "Galdeano", "Lato"].rand
+  sans_fonts.rand
 
 
-proc get_random_serif_font*(): string =
+proc get_random_serif_font*(): string {.inline.} =
   ## Get a random serif font name as string. These are for serious stuff.
-  @["Bitter", "Arvo", "Alegreya", "Vollkorn", "Rokkitt", "Cinzel", "Ovo",
-    "Domine", "Sanchez", "Vidaloka", "Tinos", "Arapey", "Cardo", "Kreon",
-    "Glegoo", "Neuton", "Adamina", "Volkhov", "Copse", "Alice", "Prata",
-    "Enriqueta", "Prociono", "Kameron", "Martel", "Lusitana", "Average",
-    "Andada", "Lustria", "Marcellus", "Cutive", "Halant", "Rasa", "Mate",
-    "Coustard", "BioRhyme", "Pridi", "Trocchi", "Radley", "Caudex", "Yrsa",
-    "Rufina", "Karma", "Quando", "Alike", "Bentham", "Poly", "Brawler",
-    "Judson", "Cormorant", "Fenix", "Kurale", "Gabriela", "Unna", "Junge",
-    "Belgrano", "Cambo", "Tienne", "Balthazar", "Italiana", "Podkova",
-    "Amethysta", "Ledger", "Buenard", "Habibi", "Esteban", "Inika", "Sura",
-    "Artifika", "Rosarivo", "Stoke", "Almendra", "Laila", "Kadwa",
-    "Petrona", "Trykker", "Montaga", "Sahitya", "Asar", "Peddana"].rand
+  serif_fonts.rand
 
 
 proc get_random_font*(): string =
   ## Get a random font name as string. Any kind of font.
-  @[get_random_handwriting_font(), get_random_mono_font(),
-    get_random_display_font(), get_random_sans_font(),
-    get_random_serif_font()].rand()
+  [get_random_handwriting_font(), get_random_mono_font(),
+   get_random_display_font(), get_random_sans_font(),
+   get_random_serif_font()].rand
 
 
 proc get_random_pastel_color*(tone: string=""): tuple =
    ## Get a random dark or light color as string, useful for CSS styling.
-   let light_colors_tuple = @[
-       "aliceblue", "antiquewhite", "aqua", "aquamarine", "azure", "beige",
-       "cornsilk", "floralwhite", "ghostwhite", "honeydew", "ivory",
-       "lavender", "lavenderblush", "lemonchiffon", "lightcyan",
-       "lightgoldenrodyellow", "lightpink", "lightskyblue",
-       "lightyellow", "linen", "mintcream", "oldlace", "papayawhip",
-       "peachpuff", "seashell", "skyblue", "snow", "thistle", "white"]
-   let dark_colors_tuple = @[
-       "brown", "chocolate", "crimson", "darkblue", "darkgoldenrod",
-       "darkgray", "darkgreen", "darkolivegreen", "darkorange", "darkred",
-       "darkslateblue", "darkslategray", "dimgray", "dodgerblue",
-       "firebrick", "forestgreen", "indigo", "maroon", "mediumblue",
-       "midnightblue", "navy", "olive", "olivedrab", "royalblue",
-       "saddlebrown", "seagreen", "sienna", "slategray", "teal"]
-
+   assert tone in ["light", "dark", ""], "Tone must be 'dark' or 'light'."
    var colors_array: seq[string]
    if tone == "light":
-       colors_array = light_colors_tuple
+       colors_array = light_pastel_colors
    elif tone == "dark":
-       colors_array = dark_colors_tuple
+       colors_array = dark_pastel_colors
    else:
-       colors_array = light_colors_tuple & dark_colors_tuple
+       colors_array = light_pastel_colors & dark_pastel_colors
 
    let colo = colors_array.rand()
    let hexa = parseColor(colo)
@@ -152,6 +89,7 @@ proc get_random_css_pattern*(): string =
 
 runnableExamples:
   import random, colors, strutils
+  # Get a Random Font from each Family.
   echo get_random_handwriting_font()
   echo get_random_mono_font()
   echo get_random_display_font()
@@ -162,3 +100,9 @@ runnableExamples:
   echo get_random_pastel_color("light")
   echo get_random_pastel_color()
   echo get_random_css_pattern()
+  # Get the lists of all Fonts from each Family.
+  echo handwriting_fonts
+  echo mono_fonts
+  echo display_fonts
+  echo sans_fonts
+  echo serif_fonts
