@@ -95,3 +95,5 @@ runnableExamples:
   echo display_fonts
   echo sans_fonts
   echo serif_fonts
+  # Get the lists of all CSS3 Patterns.
+  echo css_patterns
