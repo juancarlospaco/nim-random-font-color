@@ -43,6 +43,8 @@ background-repeat: repeat-y;
 ```
 
 
+### NodeJS
+
 ```javascript
 node random_font_color.js
 
@@ -50,6 +52,8 @@ node random_font_color.js
 (name: "mintcream", hexa: "#f5fffa", rgb: [245, 255, 250], rgb_percent: [96, 100, 98])
 (name: "darkslategray", hexa: "#2f4f4f", rgb: [47, 79, 79], rgb_percent: [18, 30, 30])
 ```
+
+- Compiled using `nim js -d:nodejs random_font_color.nim`.
 
 
 # Install
