@@ -11,6 +11,8 @@
 ##
 ## Yes they are Hardcoded because they are all available on Google Fonts and
 ## standard safe colors, you can not expand those lists of colors and fonts.
+##
+## .. image:: https://source.unsplash.com/xi9d8YSLNo4/800x402
 
 import random, colors, strutils
 
