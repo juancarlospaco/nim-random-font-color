@@ -6,6 +6,15 @@ design for non-designers, poors man design. Nim package. Works OK with NodeJS.
 ![screenshot](https://source.unsplash.com/xi9d8YSLNo4/800x402 "Illustrative Photo by https://unsplash.com/@rawpixel")
 
 
+# Bulma CSS & Spectre CSS Support
+
+Compile-Time Templates that wrap HTMLGen to spit **Bulma & Spectre ready HTML**.
+Also 1 button and 1 anchor Template tag that Auto-Disables itself on click.
+We use Bulma & Spectre CSS Frameworks because they are the only CSS Frameworks
+that do **Not use JavaScript** since Nim runs on the frontend makes perfect fit.
+For more info see https://bulma.io & https://picturepan2.github.io/spectre/getting-started.html
+
+
 # Use
 
 ```nim
