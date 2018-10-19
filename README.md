@@ -14,6 +14,12 @@ We use Bulma & Spectre CSS Frameworks because they are the only CSS Frameworks
 that do **Not use JavaScript** since Nim runs on the frontend makes perfect fit.
 For more info see https://bulma.io & https://picturepan2.github.io/spectre/getting-started.html
 
+```nim
+import random_font_color
+echo table("my table")
+<table class="table is-bordered is-striped is-hoverable table-striped table-hover">my table</table>
+```
+
 
 # Use
 
@@ -50,7 +56,6 @@ background-repeat: repeat-y;
 """
 >>>
 ```
-
 
 ### NodeJS
 
