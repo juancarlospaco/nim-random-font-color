@@ -23,7 +23,8 @@
 ##
 ## .. image:: https://source.unsplash.com/xi9d8YSLNo4/800x402
 
-import random, colors, strutils, htmlgen
+import random, colors, htmlgen
+from strutils import format, toLowerAscii
 include constants
 
 type Color = tuple[name: string, hexa: string, rgb: array[0..2, int16],
@@ -86,106 +87,107 @@ proc get_random_css_pattern*(): string =
   css_patterns.rand().format(get_random_pastel_color("light").hexa,
                              get_random_pastel_color("dark").hexa)
 
-template a*(arguments: varargs[untyped]): untyped =
+template A*(arguments: varargs[untyped]): untyped =
   htmlgen.a(arguments, class="button is-text btn btn-link")
 
-template a_autodisable*(arguments: varargs[untyped]): untyped =
+template A_autodisable*(arguments: varargs[untyped]): untyped =
   htmlgen.a(arguments, class="button is-text btn btn-link", onclick=autohide_button)
 
-template article*(arguments: varargs[untyped]): untyped =
+template Article*(arguments: varargs[untyped]): untyped =
   htmlgen.article(arguments, class="message")
 
-template body*(arguments: varargs[untyped]): untyped =
+template Body*(arguments: varargs[untyped]): untyped =
   htmlgen.body(arguments, class="has-navbar-fixed-top")
 
-template button*(arguments: varargs[untyped]): untyped =
+template Button*(arguments: varargs[untyped]): untyped =
   htmlgen.button(arguments, class="button is-light is-rounded btn tooltip")
 
-template button_autodisable*(arguments: varargs[untyped]): untyped =
+template Button_autodisable*(arguments: varargs[untyped]): untyped =
   htmlgen.button(arguments, class="button is-light is-rounded btn tooltip", onclick=autohide_button)
 
-template center*(arguments: varargs[untyped]): untyped =
-  htmlgen.center(arguments, class="is-centered")
-
-template details*(arguments: varargs[untyped]): untyped =
+template Details*(arguments: varargs[untyped]): untyped =
   htmlgen.details(arguments, class="message is-dark")
 
-template dialog*(arguments: varargs[untyped]): untyped =
+template Dialog*(arguments: varargs[untyped]): untyped =
   htmlgen.dialog(arguments, class="notification is-rounded modal")
 
-template footer*(arguments: varargs[untyped]): untyped =
+template Footer*(arguments: varargs[untyped]): untyped =
   htmlgen.footer(arguments, class="footer is-fullwidth")
 
-template h1*(arguments: varargs[untyped]): untyped =
+template H1*(arguments: varargs[untyped]): untyped =
   htmlgen.h1(arguments, class="title")
 
-template img*(arguments: varargs[untyped]): untyped =
+template Img*(arguments: varargs[untyped]): untyped =
   htmlgen.img(arguments, class="image img-responsive")
 
-template img_effect*(arguments: varargs[untyped]): untyped =
+template Img_effect*(arguments: varargs[untyped]): untyped =
   htmlgen.img(
     arguments, class="image img-responsive", onmouseout="this.style.filter:none",
     onmouseover="this.style.filter:" & efekts.rand)
 
-template label*(arguments: varargs[untyped]): untyped =
+template Label*(arguments: varargs[untyped]): untyped =
   htmlgen.label(arguments, class="label form-label")
 
-template meter*(arguments: varargs[untyped]): untyped =
+template Meter*(arguments: varargs[untyped]): untyped =
   htmlgen.meter(arguments, class="progress is-small bar-item", role="progressbar")
 
-template nav*(arguments: varargs[untyped]): untyped =
+template Nav*(arguments: varargs[untyped]): untyped =
   htmlgen.nav(arguments, class="navbar is-fixed-top is-light", role="navigation")
 
-template progress*(arguments: varargs[untyped]): untyped =
+template Progress*(arguments: varargs[untyped]): untyped =
   htmlgen.progress(arguments, class="progress is-small bar-item", role="progressbar")
 
-template section*(arguments: varargs[untyped]): untyped =
+template Section*(arguments: varargs[untyped]): untyped =
   htmlgen.section(arguments, class="section")
 
-template select*(arguments: varargs[untyped]): untyped =
+template Select*(arguments: varargs[untyped]): untyped =
   htmlgen.select(arguments, class="select is-primary is-rounded is-small form-select")
 
-template summary*(arguments: varargs[untyped]): untyped =
+template Summary*(arguments: varargs[untyped]): untyped =
   htmlgen.summary(arguments, class="message-header is-dark")
 
-template table*(arguments: varargs[untyped]): untyped =
+template Table*(arguments: varargs[untyped]): untyped =
   htmlgen.table(arguments, class="table is-bordered is-striped is-hoverable table-striped table-hover")
 
-template textarea*(arguments: varargs[untyped]): untyped =
+template Textarea*(arguments: varargs[untyped]): untyped =
   htmlgen.textarea(arguments, class="textarea is-primary form-input", autocomplete="autocomplete")
 
-template figure*(arguments: varargs[untyped]): untyped =
+template Figure*(arguments: varargs[untyped]): untyped =
   htmlgen.figure(arguments, class="figure figure-caption text-center")
 
-template pre*(arguments: varargs[untyped]): untyped =
+template Pre*(arguments: varargs[untyped]): untyped =
   htmlgen.pre(arguments, class="code")
 
-template video*(arguments: varargs[untyped]): untyped =
+template Video*(arguments: varargs[untyped]): untyped =
   htmlgen.video(arguments, class="video-responsive")
 
-template style_font*(): untyped =
+template Style_font*(): untyped =
   htmlgen.style("body{font-family:'FantasqueSansMono Nerd','Fira Code','Ubuntu','Oxygen' !important}")
 
-template link_bulma*(): untyped =
+template Link_bulma*(): untyped =
   htmlgen.link(crossorigin="anonymous", rel="stylesheet", hreflang="EN",
                href="https://unpkg.com/bulma/css/bulma.min.css")
 
-template link_spectre*(): untyped =
+template Link_spectre*(): untyped =
   htmlgen.link(crossorigin="anonymous", rel="stylesheet", hreflang="EN",
                href="https://unpkg.com/spectre.css/dist/spectre.min.css")
 
-template link_spectre_exp*(): untyped =
+template Link_spectre_exp*(): untyped =
   htmlgen.link(crossorigin="anonymous", rel="stylesheet", hreflang="EN",
                href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css")
 
-template link_spectre_icons*(): untyped =
+template Link_spectre_icons*(): untyped =
   htmlgen.link(crossorigin="anonymous", rel="stylesheet", hreflang="EN",
                href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css")
+
+when declared(htmlgen.center):  # v 0.19.1 +
+  template Center*(arguments: varargs[untyped]): untyped =
+    htmlgen.center(arguments, class="is-centered")
 
 
 #when isMainModule:    # For Testing with NodeJS uncomment this line.
 runnableExamples:
-  import random, colors, strutils
+  import random, colors
   # Get a Random Font from each Family.
   echo get_random_handwriting_font()
   echo get_random_mono_font()
@@ -206,33 +208,33 @@ runnableExamples:
   # Get the lists of all CSS3 Patterns.
   echo css_patterns
   # HTMLGen wrapped to spit Bulma and Spectre ready HTML.
-  echo link_bulma()
-  echo link_spectre()
-  echo link_spectre_exp()
-  echo link_spectre_icons()
-  echo a("a")
-  echo a_autodisable("a_autodisable")
-  echo article("article")
-  echo body("body")
-  echo button("button")
-  echo button_autodisable("button_autodisable")
-  echo center("center")
-  echo details("details")
-  echo dialog("dialog")
-  echo footer("footer")
-  echo h1("h1")
-  echo img(src="someimage.webp", alt="alt")
-  echo img_effect(src="someimage.webp", alt="alt")
-  echo label("label")
-  echo meter("meter")
-  echo nav("nav")
-  echo progress("progress")
-  echo section("section")
-  echo select("select")
-  echo summary("summary")
-  echo table("table")
-  echo textarea("textarea")
-  echo figure("figure")
-  echo pre("pre")
-  echo video("video")
-  echo style_font()
+  echo Link_bulma()
+  echo Link_spectre()
+  echo Link_spectre_exp()
+  echo Link_spectre_icons()
+  echo A("a")
+  echo A_autodisable("a_autodisable")
+  echo Article("article")
+  echo Body("body")
+  echo Button("button")
+  echo Button_autodisable("button_autodisable")
+  echo Center("center")
+  echo Details("details")
+  echo Dialog("dialog")
+  echo Footer("footer")
+  echo H1("h1")
+  echo Img(src="someimage.webp", alt="alt")
+  echo Img_effect(src="someimage.webp", alt="alt")
+  echo Label("label")
+  echo Meter("meter")
+  echo Nav("nav")
+  echo Progress("progress")
+  echo Section("section")
+  echo Select("select")
+  echo Summary("summary")
+  echo Table("table")
+  echo Textarea("textarea")
+  echo Figure("figure")
+  echo Pre("pre")
+  echo Video("video")
+  echo Style_font()

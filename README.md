@@ -16,7 +16,7 @@ For more info see https://bulma.io & https://picturepan2.github.io/spectre/getti
 
 ```nim
 import random_font_color
-echo table("my table")
+echo Table("my table")
 <table class="table is-bordered is-striped is-hoverable table-striped table-hover">my table</table>
 ```
 
