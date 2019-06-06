@@ -693,16 +693,3 @@ const light_pastel_colors* = @[
   "lightyellow", "linen", "mintcream", "oldlace", "papayawhip",
   "peachpuff", "seashell", "skyblue", "snow", "thistle", "white"
   ]  ## List of Dark Pastel Colors.
-
-const efekts = [
-    "brightness(9)","grayscale(99%)", "hue-rotate(180deg)",
-    "saturate(3)", "invert(99%)", "sepia(99%)", "contrast(99%)"
-  ]  # CSS3 Filters for OnMouseOver img tag.
-
-const autohide_button = """
-  this.classList.remove('tooltip');
-  this.classList.add('is-loading');
-  this.classList.add('loading');
-  this.style.opacity=0.5;
-  this.disabled=true;
-  """  # Auto-Disable Button or Anchor on Click, to ensure only clicked once.

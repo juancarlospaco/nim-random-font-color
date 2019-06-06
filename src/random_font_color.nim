@@ -25,7 +25,9 @@
 
 import random, colors, htmlgen
 from strutils import format, toLowerAscii
+
 include constants
+
 
 type Color = tuple[name: string, hexa: string, rgb: array[0..2, int16],
     rgb_percent: array[0..2, int8]]
@@ -34,29 +36,29 @@ when not defined(js): randomize() # Basic NodeJS Support.
 
 proc get_random_handwriting_font*(): string {.inline.} =
   ## Get a random handwriting font name as string. For Titles/SubTitles.
-  handwriting_fonts.rand
+  handwriting_fonts.sample
 
 proc get_random_mono_font*(): string {.inline.} =
   ## Get a random monospaced font name as string. Few fonts. For Code.
-  mono_fonts.rand
+  mono_fonts.sample
 
 proc get_random_display_font*(): string {.inline.} =
   ## Get a random decorative display cosmetic font name as string.For Fun.
-  display_fonts.rand
+  display_fonts.sample
 
 proc get_random_sans_font*(): string {.inline.} =
   ## Get a random sans font name as string. These are for serious stuff.
-  sans_fonts.rand
+  sans_fonts.sample
 
 proc get_random_serif_font*(): string {.inline.} =
   ## Get a random serif font name as string. These are for serious stuff.
-  serif_fonts.rand
+  serif_fonts.sample
 
 proc get_random_font*(): string =
   ## Get a random font name as string. Any kind of font.
   [get_random_handwriting_font(), get_random_mono_font(),
    get_random_display_font(), get_random_sans_font(),
-   get_random_serif_font()].rand
+   get_random_serif_font()].sample
 
 proc get_random_pastel_color*(tone: string = ""): tuple =
   ## Get a random dark or light color as string, useful for CSS styling.
@@ -69,7 +71,7 @@ proc get_random_pastel_color*(tone: string = ""): tuple =
   else:
     colors_array = light_pastel_colors & dark_pastel_colors
 
-  let colo = colors_array.rand()
+  let colo = colors_array.sample()
   let hexa = parseColor(colo)
   let rgbv = hexa.extractRGB
 
@@ -84,105 +86,8 @@ proc get_random_pastel_color*(tone: string = ""): tuple =
 proc get_random_css_pattern*(): string =
   ## Get a random CSS3 seamless pattern with random pastel colors as string.
   ## For quick but cool HTML styling on modern browsers.
-  css_patterns.rand().format(get_random_pastel_color("light").hexa,
+  css_patterns.sample().format(get_random_pastel_color("light").hexa,
                              get_random_pastel_color("dark").hexa)
-
-template A*(arguments: varargs[untyped]): untyped =
-  htmlgen.a(arguments, class="button is-text btn btn-link")
-
-template A_autodisable*(arguments: varargs[untyped]): untyped =
-  htmlgen.a(arguments, class="button is-text btn btn-link", onclick=autohide_button)
-
-template Article*(arguments: varargs[untyped]): untyped =
-  htmlgen.article(arguments, class="message")
-
-template Body*(arguments: varargs[untyped]): untyped =
-  htmlgen.body(arguments, class="has-navbar-fixed-top")
-
-template Button*(arguments: varargs[untyped]): untyped =
-  htmlgen.button(arguments, class="button is-light is-rounded btn tooltip")
-
-template Button_autodisable*(arguments: varargs[untyped]): untyped =
-  htmlgen.button(arguments, class="button is-light is-rounded btn tooltip", onclick=autohide_button)
-
-template Details*(arguments: varargs[untyped]): untyped =
-  htmlgen.details(arguments, class="message is-dark")
-
-template Dialog*(arguments: varargs[untyped]): untyped =
-  htmlgen.dialog(arguments, class="notification is-rounded modal")
-
-template Footer*(arguments: varargs[untyped]): untyped =
-  htmlgen.footer(arguments, class="footer is-fullwidth")
-
-template H1*(arguments: varargs[untyped]): untyped =
-  htmlgen.h1(arguments, class="title")
-
-template Img*(arguments: varargs[untyped]): untyped =
-  htmlgen.img(arguments, class="image img-responsive")
-
-template Img_effect*(arguments: varargs[untyped]): untyped =
-  htmlgen.img(
-    arguments, class="image img-responsive", onmouseout="this.style.filter:none",
-    onmouseover="this.style.filter:" & efekts.rand)
-
-template Label*(arguments: varargs[untyped]): untyped =
-  htmlgen.label(arguments, class="label form-label")
-
-template Meter*(arguments: varargs[untyped]): untyped =
-  htmlgen.meter(arguments, class="progress is-small bar-item", role="progressbar")
-
-template Nav*(arguments: varargs[untyped]): untyped =
-  htmlgen.nav(arguments, class="navbar is-fixed-top is-light", role="navigation")
-
-template Progress*(arguments: varargs[untyped]): untyped =
-  htmlgen.progress(arguments, class="progress is-small bar-item", role="progressbar")
-
-template Section*(arguments: varargs[untyped]): untyped =
-  htmlgen.section(arguments, class="section")
-
-template Select*(arguments: varargs[untyped]): untyped =
-  htmlgen.select(arguments, class="select is-primary is-rounded is-small form-select")
-
-template Summary*(arguments: varargs[untyped]): untyped =
-  htmlgen.summary(arguments, class="message-header is-dark")
-
-template Table*(arguments: varargs[untyped]): untyped =
-  htmlgen.table(arguments, class="table is-bordered is-striped is-hoverable table-striped table-hover")
-
-template Textarea*(arguments: varargs[untyped]): untyped =
-  htmlgen.textarea(arguments, class="textarea is-primary form-input", autocomplete="autocomplete")
-
-template Figure*(arguments: varargs[untyped]): untyped =
-  htmlgen.figure(arguments, class="figure figure-caption text-center")
-
-template Pre*(arguments: varargs[untyped]): untyped =
-  htmlgen.pre(arguments, class="code")
-
-template Video*(arguments: varargs[untyped]): untyped =
-  htmlgen.video(arguments, class="video-responsive")
-
-template Style_font*(): untyped =
-  htmlgen.style("body{font-family:'FantasqueSansMono Nerd','Fira Code','Ubuntu','Oxygen' !important}")
-
-template Link_bulma*(): untyped =
-  htmlgen.link(crossorigin="anonymous", rel="stylesheet", hreflang="EN",
-               href="https://unpkg.com/bulma/css/bulma.min.css")
-
-template Link_spectre*(): untyped =
-  htmlgen.link(crossorigin="anonymous", rel="stylesheet", hreflang="EN",
-               href="https://unpkg.com/spectre.css/dist/spectre.min.css")
-
-template Link_spectre_exp*(): untyped =
-  htmlgen.link(crossorigin="anonymous", rel="stylesheet", hreflang="EN",
-               href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css")
-
-template Link_spectre_icons*(): untyped =
-  htmlgen.link(crossorigin="anonymous", rel="stylesheet", hreflang="EN",
-               href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css")
-
-when declared(htmlgen.center):  # v 0.19.1 +
-  template Center*(arguments: varargs[untyped]): untyped =
-    htmlgen.center(arguments, class="is-centered")
 
 
 #when isMainModule:    # For Testing with NodeJS uncomment this line.
@@ -207,34 +112,3 @@ runnableExamples:
   echo serif_fonts
   # Get the lists of all CSS3 Patterns.
   echo css_patterns
-  # HTMLGen wrapped to spit Bulma and Spectre ready HTML.
-  echo Link_bulma()
-  echo Link_spectre()
-  echo Link_spectre_exp()
-  echo Link_spectre_icons()
-  echo A("a")
-  echo A_autodisable("a_autodisable")
-  echo Article("article")
-  echo Body("body")
-  echo Button("button")
-  echo Button_autodisable("button_autodisable")
-  echo Center("center")
-  echo Details("details")
-  echo Dialog("dialog")
-  echo Footer("footer")
-  echo H1("h1")
-  echo Img(src="someimage.webp", alt="alt")
-  echo Img_effect(src="someimage.webp", alt="alt")
-  echo Label("label")
-  echo Meter("meter")
-  echo Nav("nav")
-  echo Progress("progress")
-  echo Section("section")
-  echo Select("select")
-  echo Summary("summary")
-  echo Table("table")
-  echo Textarea("textarea")
-  echo Figure("figure")
-  echo Pre("pre")
-  echo Video("video")
-  echo Style_font()
