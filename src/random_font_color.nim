@@ -20,45 +20,34 @@
 ## We use Bulma & Spectre CSS Frameworks because they are the only CSS Frameworks
 ## that do **Not use JavaScript** since Nim runs on the frontend makes perfect fit.
 ## See https://bulma.io & https://picturepan2.github.io/spectre/getting-started.html
-##
-## .. image:: https://source.unsplash.com/xi9d8YSLNo4/800x402
 
-import random, colors, htmlgen
-from strutils import format, toLowerAscii
-
+import std/[random, colors, htmlgen]
+from std/strutils import format
 include constants
 
-
-type Color = tuple[name: string, hexa: string, rgb: array[0..2, int16],
-    rgb_percent: array[0..2, int8]]
-when not defined(js): randomize() # Basic NodeJS Support.
-
-
-proc get_random_handwriting_font*(): string {.inline.} =
+template get_random_handwriting_font*(): string =
   ## Get a random handwriting font name as string. For Titles/SubTitles.
   handwriting_fonts.sample
 
-proc get_random_mono_font*(): string {.inline.} =
+template get_random_mono_font*(): string =
   ## Get a random monospaced font name as string. Few fonts. For Code.
   mono_fonts.sample
 
-proc get_random_display_font*(): string {.inline.} =
+template get_random_display_font*(): string =
   ## Get a random decorative display cosmetic font name as string.For Fun.
   display_fonts.sample
 
-proc get_random_sans_font*(): string {.inline.} =
+template get_random_sans_font*(): string =
   ## Get a random sans font name as string. These are for serious stuff.
   sans_fonts.sample
 
-proc get_random_serif_font*(): string {.inline.} =
+template get_random_serif_font*(): string =
   ## Get a random serif font name as string. These are for serious stuff.
   serif_fonts.sample
 
-proc get_random_font*(): string =
+template get_random_font*(): string =
   ## Get a random font name as string. Any kind of font.
-  [get_random_handwriting_font(), get_random_mono_font(),
-   get_random_display_font(), get_random_sans_font(),
-   get_random_serif_font()].sample
+  [get_random_handwriting_font(), get_random_mono_font(), get_random_display_font(), get_random_sans_font(),  get_random_serif_font()].sample
 
 proc get_random_pastel_color*(tone: string = ""): tuple =
   ## Get a random dark or light color as string, useful for CSS styling.
@@ -75,116 +64,112 @@ proc get_random_pastel_color*(tone: string = ""): tuple =
   let hexa = parseColor(colo)
   let rgbv = hexa.extractRGB
 
-  let c: Color = (
-     name: colo,
-     hexa: toLowerAscii($hexa),
-     rgb: [int16(rgbv.r), int16(rgbv.g), int16(rgbv.b)],
-     rgb_percent: [int8(rgbv.r * 100 / 255), int8(rgbv.g * 100 / 255), int8(
-         rgbv.b * 100 / 255)])
-  result = c
+  result = (
+    name: colo,
+    hexa: $hexa,
+    rgb: [int16(rgbv.r), int16(rgbv.g), int16(rgbv.b)],
+    rgb_percent: [int8(rgbv.r * 100 / 255), int8(rgbv.g * 100 / 255), int8(rgbv.b * 100 / 255)])
 
-proc get_random_css_pattern*(): string =
+template get_random_css_pattern*(): string =
   ## Get a random CSS3 seamless pattern with random pastel colors as string.
   ## For quick but cool HTML styling on modern browsers.
-  css_patterns.sample().format(get_random_pastel_color("light").hexa,
-                             get_random_pastel_color("dark").hexa)
+  css_patterns.sample().format(get_random_pastel_color("light").hexa, get_random_pastel_color("dark").hexa)
 
-template A*(arguments: varargs[untyped]): untyped =
+template A*(arguments: varargs[untyped]) =
   htmlgen.a(arguments, class="button is-text btn btn-link")
 
-template A_autodisable*(arguments: varargs[untyped]): untyped =
+template A_autodisable*(arguments: varargs[untyped]) =
   htmlgen.a(arguments, class="button is-text btn btn-link", onclick=autohide_button)
 
-template Article*(arguments: varargs[untyped]): untyped =
+template Article*(arguments: varargs[untyped]) =
   htmlgen.article(arguments, class="message")
 
-template Body*(arguments: varargs[untyped]): untyped =
+template Body*(arguments: varargs[untyped]) =
   htmlgen.body(arguments, class="has-navbar-fixed-top")
 
-template Button*(arguments: varargs[untyped]): untyped =
+template Button*(arguments: varargs[untyped]) =
   htmlgen.button(arguments, class="button is-light is-rounded btn tooltip")
 
-template Button_autodisable*(arguments: varargs[untyped]): untyped =
+template Button_autodisable*(arguments: varargs[untyped]) =
   htmlgen.button(arguments, class="button is-light is-rounded btn tooltip", onclick=autohide_button)
 
-template Details*(arguments: varargs[untyped]): untyped =
+template Details*(arguments: varargs[untyped]) =
   htmlgen.details(arguments, class="message is-dark")
 
-template Dialog*(arguments: varargs[untyped]): untyped =
+template Dialog*(arguments: varargs[untyped]) =
   htmlgen.dialog(arguments, class="notification is-rounded modal")
 
-template Footer*(arguments: varargs[untyped]): untyped =
+template Footer*(arguments: varargs[untyped]) =
   htmlgen.footer(arguments, class="footer is-fullwidth")
 
-template H1*(arguments: varargs[untyped]): untyped =
+template H1*(arguments: varargs[untyped]) =
   htmlgen.h1(arguments, class="title")
 
-template Img*(arguments: varargs[untyped]): untyped =
+template Img*(arguments: varargs[untyped]) =
   htmlgen.img(arguments, class="image img-responsive")
 
-template Img_effect*(arguments: varargs[untyped]): untyped =
+template Img_effect*(arguments: varargs[untyped]) =
   htmlgen.img(
     arguments, class="image img-responsive", onmouseout="this.style.filter:none",
     onmouseover="this.style.filter:" & efekts.sample)
 
-template Label*(arguments: varargs[untyped]): untyped =
+template Label*(arguments: varargs[untyped]) =
   htmlgen.label(arguments, class="label form-label")
 
-template Meter*(arguments: varargs[untyped]): untyped =
+template Meter*(arguments: varargs[untyped]) =
   htmlgen.meter(arguments, class="progress is-small bar-item", role="progressbar")
 
-template Nav*(arguments: varargs[untyped]): untyped =
+template Nav*(arguments: varargs[untyped]) =
   htmlgen.nav(arguments, class="navbar is-fixed-top is-light", role="navigation")
 
-template Progress*(arguments: varargs[untyped]): untyped =
+template Progress*(arguments: varargs[untyped]) =
   htmlgen.progress(arguments, class="progress is-small bar-item", role="progressbar")
 
-template Section*(arguments: varargs[untyped]): untyped =
+template Section*(arguments: varargs[untyped]) =
   htmlgen.section(arguments, class="section")
 
-template Select*(arguments: varargs[untyped]): untyped =
+template Select*(arguments: varargs[untyped]) =
   htmlgen.select(arguments, class="select is-primary is-rounded is-small form-select")
 
-template Summary*(arguments: varargs[untyped]): untyped =
+template Summary*(arguments: varargs[untyped]) =
   htmlgen.summary(arguments, class="message-header is-dark")
 
-template Table*(arguments: varargs[untyped]): untyped =
+template Table*(arguments: varargs[untyped]) =
   htmlgen.table(arguments, class="table is-bordered is-striped is-hoverable table-striped table-hover")
 
-template Textarea*(arguments: varargs[untyped]): untyped =
+template Textarea*(arguments: varargs[untyped]) =
   htmlgen.textarea(arguments, class="textarea is-primary form-input", autocomplete="autocomplete")
 
-template Figure*(arguments: varargs[untyped]): untyped =
+template Figure*(arguments: varargs[untyped]) =
   htmlgen.figure(arguments, class="figure figure-caption text-center")
 
-template Pre*(arguments: varargs[untyped]): untyped =
+template Pre*(arguments: varargs[untyped]) =
   htmlgen.pre(arguments, class="code")
 
-template Video*(arguments: varargs[untyped]): untyped =
+template Video*(arguments: varargs[untyped]) =
   htmlgen.video(arguments, class="video-responsive")
 
-template Style_font*(): untyped =
+template Style_font*() =
   htmlgen.style("body{font-family:'FantasqueSansMono Nerd','Fira Code','Ubuntu','Oxygen' !important}")
 
-template Link_bulma*(): untyped =
+template Link_bulma*() =
   htmlgen.link(crossorigin="anonymous", rel="stylesheet", hreflang="EN",
-               href="https://unpkg.com/bulma/css/bulma.min.css")
+                href="https://unpkg.com/bulma/css/bulma.min.css")
 
-template Link_spectre*(): untyped =
+template Link_spectre*() =
   htmlgen.link(crossorigin="anonymous", rel="stylesheet", hreflang="EN",
-               href="https://unpkg.com/spectre.css/dist/spectre.min.css")
+                href="https://unpkg.com/spectre.css/dist/spectre.min.css")
 
-template Link_spectre_exp*(): untyped =
+template Link_spectre_exp*() =
   htmlgen.link(crossorigin="anonymous", rel="stylesheet", hreflang="EN",
-               href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css")
+                href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css")
 
-template Link_spectre_icons*(): untyped =
+template Link_spectre_icons*() =
   htmlgen.link(crossorigin="anonymous", rel="stylesheet", hreflang="EN",
-               href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css")
+                href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css")
 
-when declared(htmlgen.center):  # v 0.19.1 +
-  template Center*(arguments: varargs[untyped]): untyped =
-    htmlgen.center(arguments, class="is-centered")
+template Center*(arguments: varargs[untyped]) =
+  htmlgen.center(arguments, class="is-centered")
 
 
 #when isMainModule:    # For Testing with NodeJS uncomment this line.
