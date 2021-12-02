@@ -3,8 +3,6 @@
 Random curated Fonts and pastel Colors for your UI/UX design,
 design for non-designers, poors man design. Nim package. Works OK with NodeJS.
 
-![screenshot](https://source.unsplash.com/xi9d8YSLNo4/800x402 "Illustrative Photo by https://unsplash.com/@rawpixel")
-
 
 # Bulma CSS & Spectre CSS Support
 
